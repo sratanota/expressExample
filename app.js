@@ -18,7 +18,7 @@ app.get('/students', (req, res) => {
   db.any('SELECT * from public.student')
   .then((data) => {
     console.log('DATA:', data)
-    res.send('Will find student information',data)
+    res.send(JSON.stringify(data))
   })
   .catch((error) => {
     console.log('ERROR:', error)
