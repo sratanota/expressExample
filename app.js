@@ -61,7 +61,15 @@ app.get('/students', (req, res) => {
 app.post('/student', (req, res) => {
   console.log('Got body:', req.body);
   const {id} = req.body;
-  res.sendStatus(200);
+  db.any('select * from public.student where "id" = $1',id)
+    .then((data) => {
+      console.log('DATA:', data)
+      res.json(data)
+    })
+    .catch((error) => {
+      console.log('ERROR:', error)
+      res.send("ERROR:Can't get data")
+    }) 
 });
 
 app.listen(port, () => {
