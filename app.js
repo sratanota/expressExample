@@ -58,6 +58,11 @@ app.get('/students', (req, res) => {
 
 })
 
+app.post('/student', (req, res) => {
+  console.log('Got body:', req.body);
+  const {id} = req.body;
+  res.sendStatus(200);
+});
 
 app.listen(port, () => {
   console.log(`My Example app listening on port ${port}`)
